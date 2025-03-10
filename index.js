@@ -645,11 +645,11 @@ app.get("/jointable_orderdetails", async (req, res) => {
     const orders = await Order_Detail.findAll({
       include: [{model: Customer, attributes: ['customer_id', 'Address']},
         {model: Employee, attributes: ['employee_username'], required: false},
-        {model: Cake, attributes: ['cake_name', 'cake_status']}], 
+        {model: Cake, attributes: ['cake_name', 'cake_status', 'cake_price']}], 
       where: { employee_id: null }
     });
     const reports = await Order_Detail.findAll({
-      include: [{model: Customer, attributes: ['customer_id', 'Address']},
+      include: [{model: Customer, attributes: ['customer_id', 'Address', 'customer_username']},
         {model: Employee, attributes: ['employee_username'], required: false,},
         {model: Cake, attributes: ['cake_name', 'cake_status']}],
       where: { employee_id: { [Op.ne]: null } }
